@@ -1,0 +1,48 @@
+<%- include("partials/header.ejs"); %>
+    <div class="page-body">
+        <section class="book-note">
+            <div class="note-card">
+                <img class="book-notes-cover" src=<%=book.cover_img_url%>>
+                <div class="book-info">
+                    <h1>
+
+                        <%=book.title %>
+
+
+
+                    </h1>
+
+                    <p class="fw-light">ISBN: <%=book.isbn %>
+                    </p>
+                    <p class="fw-light">Date read: <%= book.date_read.getDate()%>-<%= book.date_read.getMonth()%>-<%=
+                                    book.date_read.getFullYear()%>
+
+                                    <p class="fw-light">How strongly I recommend it: <%=book.recommendation%>/10 </<p
+                                                class="fw-light">
+                                            <p>
+                                                <%=book.description%>
+                                            </p>
+                </div>
+
+                <div class="notes-info">
+                    <h1>My Notes</h1>
+
+                    <% book.notes.split("\n").forEach(note=>{%>
+                        <p>
+                            <%=note%>
+                        </p>
+                        <%});%>
+
+
+
+
+
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <%- include("partials/footer.ejs"); %>

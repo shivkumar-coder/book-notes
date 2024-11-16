@@ -1,0 +1,99 @@
+.page-body {
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    margin: 0
+}
+
+.introduction {
+    margin-top: -40px;
+}
+
+
+section {
+    width: 50%;
+
+
+}
+
+.book-cover {
+    width: 100px;
+    height: 170px;
+    margin-right: 2em;
+    float: left;
+}
+
+.book-notes-cover{
+    width: 140px;
+    height: 250px;
+    margin-right: 2em;
+    float: left;
+}
+
+.page-body div {
+
+
+    margin-top: 8em;
+}
+
+
+
+.page-body .book-change-btns {
+    margin-top: 0em;
+    display: block;
+    grid-column-start: 4;
+    grid-column-end: 5;
+
+
+
+}
+
+footer {
+    margin-top: 10em;
+    /* position: absolute; */
+
+
+    width: 100%;
+    text-align: center;
+
+}
+
+.form {
+    margin-top: 2em;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-row-gap: 10px;
+    grid-column-gap: 20px;
+}
+
+.new-book {
+
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    height: 80vh;
+
+    justify-content: center;
+
+}
+
+.error {
+    color: red;
+    font-size: smaller;
+}
+
+.page-body .book-metadata {
+    margin-top: 2em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+
+

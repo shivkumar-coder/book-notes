@@ -1,0 +1,84 @@
+<%-include("partials/header.ejs");%>
+    <div class="new-book">
+        <h1>
+            <%=book.title%>
+        </h1>
+        <form class="form" onsubmit="handleUpdateBook(event,'<%=book.id%>')">
+            <label for="title">Title</label>
+
+            <input name="title" value="<%=book.title %>" />
+
+
+
+
+            <label for="description">Description</label>
+            <textarea name="description"><%= book.description%></textarea>
+            <%if(locals.errors && errors.description) { %>
+                <span class="error">
+                    <%=errors.description %>
+                </span>
+                <br>
+                <% }%>
+
+
+
+                    <label for="isbn">ISBN Number</label>
+                    <input name="isbn" minlength="13" maxlength="13" value="<%=book.isbn%>" required />
+
+                    <%if(locals.errors && errors.isbn) { %>
+                        <span class="error">
+                            <%=errors.isbn %>
+                        </span>
+                        <br>
+                        <% }%>
+
+                            <label for="date">Date Read</label>
+                            <input type="date" value="<%=new Date(book.date_read).toISOString().split("T")[0]%>"
+                            name="date" required />
+
+                            <label for="recommendation">Recommendation (out of 10)</label>
+                            <input name="recommendation" type="number" value="<%=book.recommendation%>" required min="0"
+                                max="10" />
+
+                            <label for="notes">Notes</label>
+                            <textarea name="notes"><%=book.notes%></textarea>
+
+                            <button class="btn btn-secondary" type="submit">Create </button>
+
+
+        </form>
+    </div>
+    <script>
+        async function handleUpdateBook(event, id) {
+            event.preventDefault();
+            const body = {
+                title: document.querySelector("input[name='title']").value,
+                description: document.querySelector("textarea[name='description']").value,
+                isbn: document.querySelector("input[name='isbn']").value,
+                date: document.querySelector("input[name='date']").value,
+                recommendation: document.querySelector("input[name='recommendation']").value,
+                notes: document.querySelector("textarea[name='notes']").value,
+
+            };
+            console.log(JSON.stringify(body));
+            
+
+            const response = await fetch("/books/" + id, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                  
+                body: JSON.stringify(body)
+
+            });
+            if (response.status === 300) {
+                window.location.href = "/";
+            } else {
+                console.error("Error updating book ");
+                console.log(await response.json());
+            }
+        }
+    </script>
+
+    <%-include("partials/footer.ejs"); %>

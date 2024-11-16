@@ -1,0 +1,48 @@
+<%- include("partials/header.ejs"); %>
+
+    <div class="new-book">
+        <h1>Add Book</h1>
+        <form class="form" method="POST" action="/books">
+            <label for="title">Title</label>
+
+            <input name="title" required />
+
+
+
+
+            <label for="description">Description</label>
+            <textarea name="description"></textarea>
+            <%if(locals.errors && errors.description) { %>
+                <span class="error">
+                    <%=errors.description %>
+                </span>
+                <br>
+                <% }%>
+
+
+
+                    <label for="isbn">ISBN Number</label>
+                    <input name="isbn" minlength="13" maxlength="13" required />
+
+                    <%if(locals.errors && errors.isbn) { %>
+                        <span class="error">
+                            <%=errors.isbn %>
+                        </span>
+                        <br>
+                        <% }%>
+
+                            <label for="date">Date Read</label>
+                            <input type="date" name="date" required />
+
+                            <label for="recommendation">Recommendation (out of 10)</label>
+                            <input name="recommendation" type="number" required min="0" max="10" />
+
+                            <label for="notes">Notes</label>
+                            <textarea name="notes"></textarea>
+
+                            <button class="btn btn-secondary" type="submit">Create </button>
+
+
+        </form>
+    </div>
+    <%- include("partials/footer.ejs"); %>
